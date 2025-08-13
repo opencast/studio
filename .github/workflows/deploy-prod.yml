@@ -17,15 +17,15 @@ jobs:
       run: |
         git fetch
         if git checkout gh-pages; then
-          # Save CNAME and 404.html
+          # Save CNAME
           tmpdir=$(mktemp -d)
-          cp CNAME 404.html $tmpdir || :
+          cp CNAME $tmpdir || :
 
           # Remove all previous files
           git ls-files | while read -r f; do git rm -rf "$f"; done
 
-          # Restore 404.html and CNAME
-          cp $tmpdir/404.html $tmpdir/CNAME . || :
+          # Restore CNAME
+          cp $tmpdir/CNAME . || :
         else
           git checkout --orphan gh-pages
           git ls-files | while read -r f; do rm -f "$f"; git rm --cached "$f"; done
