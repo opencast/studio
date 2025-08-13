@@ -1,5 +1,4 @@
 import React from "react";
-import { FiGlobe, FiMail, FiPhone } from "react-icons/fi";
 
 import { DEFINES } from "./defines";
 import { COLORS } from "./util";
@@ -53,27 +52,16 @@ export const About: React.FC<Props> = ({ close }) => (
         involved in the recording.
       </p>
 
-      {DEFINES.showLegalNotices && (
-        <React.Fragment>
-          <h2>Support</h2>
-          <p>
-            If you are experiencing any difficulties or found any bugs,
-            please take a look at the{" "}
-            <a href="https://github.com/elan-ev/opencast-studio/issues">
-              issue tracker on GitHub
-            </a>.
-            Before filing a new issue, please check if one about your topic already exists.
-            We regularly check incoming issues and do our best to address bugs in a timely manner.
-          </p>
-          <p>
-            If you are interested in additional development
-            or want to support the development of Opencast Studio, please contact{" "}
-            <a href="mailto:office@elan-ev.de">
-              office@elan-ev.de
-            </a>.
-          </p>
-        </React.Fragment>
-      )}
+      <h2>Support</h2>
+      <p>
+        If you are experiencing any difficulties or found any bugs,
+        please take a look at the{" "}
+        <a href="https://github.com/elan-ev/opencast-studio/issues">
+          issue tracker on GitHub
+        </a>.
+        Before filing a new issue, please check if one about your topic already exists.
+        We regularly check incoming issues and do our best to address bugs in a timely manner.
+      </p>
 
       <h2>Credits</h2>
       <p>
@@ -100,46 +88,6 @@ export const About: React.FC<Props> = ({ close }) => (
           And many members from the Opencast community who helped along the way.
         </li>
       </ul>
-
-      {DEFINES.showLegalNotices && <>
-        <h2>elan e.V.</h2>
-
-        <p>
-          The e-learning academic network (elan e.V.) is a German non-profit organization supporting
-          higher-education organizations in all matters related to e-learning. Our services include
-          practical tips about how to use digital technologies in education, legal advice and
-          development of free, open-source software to support education.
-        </p>
-
-        <h3>Contact</h3>
-
-        <p>
-          Dr. Norbert Kleinefeld, Geschäftsführer
-          <br />
-          Karlstr. 23
-          <br />
-          D-26123 Oldenburg
-        </p>
-
-        <p css={{ svg: { marginRight: 8, verticalAlign: "middle" } }}>
-          <FiGlobe />
-          <a href="https://elan-ev.de">elan-ev.de</a>
-          <br />
-          <FiMail />
-          <a href="mailto:office@elan-ev.de">kontakt@elan-ev.de</a>
-          <br />
-          <FiPhone />
-          <a href="tel:+4944199866610">+49&thinsp;441 998&thinsp;666&thinsp;10</a>
-        </p>
-
-        <p>
-          Registergericht: Amtsgericht Oldenburg
-          <br />
-          Registernummer: VR 200644
-          <br />
-          USt.-ID-Nr.: DE 265901392
-        </p>
-      </>}
 
       <h2>Version</h2>
       <p>

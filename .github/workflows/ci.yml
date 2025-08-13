@@ -20,8 +20,6 @@ jobs:
 
     # Prepare test deployment
     - name: Build for test deployment
-      env:
-        INCLUDE_LEGAL_NOTICES: 1
       run: |
         builddate="$(date --utc '+%Y-%m-%d_%H-%M-%S')"
         buildno="$(printf '%06d' "${{ github.run_id }}")"
@@ -50,8 +48,6 @@ jobs:
     # Prepare production deployment
     - name: Build for prod deployment
       if: github.repository_owner == 'elan-ev' && github.ref == 'refs/heads/master'
-      env:
-        INCLUDE_LEGAL_NOTICES: 1
       run: |
         rm -rf build
         npm run build:release

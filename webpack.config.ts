@@ -61,7 +61,6 @@ const config: CallableWebpackConfiguration = (_env, argv) => ({
     new DefinePlugin({
       DEFINE_SETTINGS_PATH: JSON.stringify(process.env.SETTINGS_PATH),
       DEFINE_PUBLIC_PATH: JSON.stringify(publicPath),
-      DEFINE_SHOW_LEGAL_NOTICES: JSON.stringify(process.env.INCLUDE_LEGAL_NOTICES),
       DEFINE_BUILD_DATE: JSON.stringify(process.env.BUILD_DATE),
       DEFINE_COMMIT_SHA: JSON.stringify(process.env.COMMIT_SHA),
     }),

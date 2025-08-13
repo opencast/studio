@@ -142,4 +142,3 @@ npm run build:release
 | ----------------------- | ------------------ | -----------
 | `PUBLIC_PATH`           | `/studio`          | Path from which Studio will be served
 | `SETTINGS_PATH`         | `/mysettings.toml` | Path from which to load the configuration (see `CONFIGURATION.md` for more information)
-| `INCLUDE_LEGAL_NOTICES` | `1`                | Set to `1` to include legal notices and information about elan e.V., any other value or having this variable not set will not include them. Unless you are working for elan e.V. there is probably no reason for you to use this variable.
