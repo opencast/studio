@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'elan-ev' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'opencast' }}
     steps:
     - uses: actions/checkout@v4
 

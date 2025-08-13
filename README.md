@@ -1,9 +1,9 @@
 Opencast Studio
 ===============
 
-[![Build & test](https://github.com/elan-ev/opencast-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/elan-ev/opencast-studio/actions/workflows/ci.yml)
-[![MIT license](https://img.shields.io/github/license/elan-ev/opencast-studio)
-](https://github.com/elan-ev/opencast-studio/blob/master/LICENSE)
+[![Build & test](https://github.com/opencast/studio/actions/workflows/ci.yml/badge.svg)](https://github.com/opencast/studio/actions/workflows/ci.yml)
+[![MIT license](https://img.shields.io/github/license/opencast/studio)
+](https://github.com/opencast/studio/blob/master/LICENSE)
 
 A web-based recording studio for [Opencast](https://opencast.org).
 
@@ -112,8 +112,8 @@ In older versions, you might need to create such a role in the security configur
 To build Studio yourself, execute these commands:
 
 ```sh
-% git clone git@github.com:elan-ev/opencast-studio.git
-% cd opencast-studio
+% git clone git@github.com:opencast/studio.git
+% cd studio
 % npm install
 % npm run build:release   # or npm run build:dev for development
 ```

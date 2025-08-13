@@ -7,9 +7,9 @@
     git tag -m Release -s "$DATE"
     git push upstream "$DATE":"$DATE"
    ```
-3. Wait for the [Create release draft](https://github.com/elan-ev/opencast-studio/actions/workflows/create-release.yml)
+3. Wait for the [Create release draft](https://github.com/opencast/studio/actions/workflows/create-release.yml)
    to finish
-    - it will create a new [GitHub release draft](https://github.com/elan-ev/opencast-studio/releases)
+    - it will create a new [GitHub release draft](https://github.com/opencast/studio/releases)
     - review and publish the draft
 4. Submit a pull request against Opencast
     - [Update the release](https://github.com/opencast/opencast/blob/develop/modules/studio/pom.xml#L16-L17)

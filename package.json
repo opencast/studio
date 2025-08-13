@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elan-ev/opencast-studio.git"
+    "url": "git+https://github.com/opencast/studio.git"
   },
   "homepage": "https://studio.opencast.org",
   "scripts": {

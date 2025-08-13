@@ -38,10 +38,10 @@ export const About: React.FC<Props> = ({ close }) => (
       </p>
       <p>
         This is free software under the terms of the{" "}
-        <a href="https://github.com/elan-ev/opencast-studio/blob/master/LICENSE">
+        <a href="https://github.com/opencast/studio/blob/master/LICENSE">
           MIT License
         </a>{" "}
-        developed by the <a href="https://elan-ev.de">elan e.V.</a> in cooperation
+        developed by <a href="https://elan-ev.de">elan e.V.</a> in cooperation
         with the <a href="https://ethz.ch">ETH Zürich</a>.
       </p>
 
@@ -56,7 +56,7 @@ export const About: React.FC<Props> = ({ close }) => (
       <p>
         If you are experiencing any difficulties or found any bugs,
         please take a look at the{" "}
-        <a href="https://github.com/elan-ev/opencast-studio/issues">
+        <a href="https://github.com/opencast/studio/issues">
           issue tracker on GitHub
         </a>.
         Before filing a new issue, please check if one about your topic already exists.
@@ -95,7 +95,7 @@ export const About: React.FC<Props> = ({ close }) => (
         commit{" "}
         <a
           aria-label="Git commit on GitHub"
-          href={"https://github.com/elan-ev/opencast-studio/commit/" + DEFINES.commitSha}
+          href={"https://github.com/opencast/studio/commit/" + DEFINES.commitSha}
         >
           {DEFINES.commitSha ?? "?"}
         </a>.
