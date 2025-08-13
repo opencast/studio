@@ -1,9 +1,9 @@
 Opencast Studio
 ===============
 
-[![Build & test](https://github.com/elan-ev/opencast-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/elan-ev/opencast-studio/actions/workflows/ci.yml)
-[![MIT license](https://img.shields.io/github/license/elan-ev/opencast-studio)
-](https://github.com/elan-ev/opencast-studio/blob/master/LICENSE)
+[![Build & test](https://github.com/opencast/studio/actions/workflows/ci.yml/badge.svg)](https://github.com/opencast/studio/actions/workflows/ci.yml)
+[![MIT license](https://img.shields.io/github/license/opencast/studio)
+](https://github.com/opencast/studio/blob/main/LICENSE)
 
 A web-based recording studio for [Opencast](https://opencast.org).
 
@@ -52,7 +52,7 @@ information.
 
 ### Standalone Version at [studio.opencast.org](https://studio.opencast.org)
 
-Opencast Studio is always deployed from `master` branch.
+Opencast Studio is always deployed from `main` branch.
 
 You are free to use the publicly deployed version. However, there are two
 caveats.
@@ -100,6 +100,7 @@ Opencast Studio uses the following APIs:
 
 - `/ingest/*`
 - `/info/me.json`
+- `/studio-api/series.json`
 
 You have to make sure that these APIs are accessible to the user using Studio.
 In Opencast ≥8.2, providing a user with `ROLE_STUDIO` should grant a user all necessary rights.
@@ -111,8 +112,8 @@ In older versions, you might need to create such a role in the security configur
 To build Studio yourself, execute these commands:
 
 ```sh
-% git clone git@github.com:elan-ev/opencast-studio.git
-% cd opencast-studio
+% git clone git@github.com:opencast/studio.git
+% cd studio
 % npm install
 % npm run build:release   # or npm run build:dev for development
 ```
@@ -142,4 +143,3 @@ npm run build:release
 | ----------------------- | ------------------ | -----------
 | `PUBLIC_PATH`           | `/studio`          | Path from which Studio will be served
 | `SETTINGS_PATH`         | `/mysettings.toml` | Path from which to load the configuration (see `CONFIGURATION.md` for more information)
-| `INCLUDE_LEGAL_NOTICES` | `1`                | Set to `1` to include legal notices and information about elan e.V., any other value or having this variable not set will not include them. Unless you are working for elan e.V. there is probably no reason for you to use this variable.

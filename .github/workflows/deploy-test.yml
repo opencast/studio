@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'elan-ev'
+    if: github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'opencast'
     steps:
     - name: Prepare deploy key
       run: |
@@ -27,7 +27,7 @@ jobs:
     - name: Checkout test deployment repo
       run: |
         rm -rf studio-test || :
-        git clone "git@github.com:elan-ev/studio-test.git"
+        git clone "git@github.com:opencast/studio-test.git"
         cd studio-test
         git checkout gh-pages
 

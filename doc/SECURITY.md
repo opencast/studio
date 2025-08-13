@@ -4,12 +4,14 @@ Security Policy
 Supported Versions
 ------------------
 
-This project has a rolling release and we only support the latest state of the branches `master` and `production`.
+This project has a rolling release and we only support the latest state of the branches `main`.
 
 
 Reporting a Vulnerability
 -------------------------
 
-If you find a security vulnerability,
-please report it by sending a mail to office@elan-ev.de.
-We will discuss the problem internally and, if necessary, release a patched version as soon as possible.
+Please report security-related bugs by sending an email to security@opencast.org.
+Everything else should be filed as a ticket in our [issue tracker](https://github.com/opencast/studio/issues)
+
+The [Opencast Security Issue Process](https://docs.opencast.org/develop/developer/#participate/security-issues)
+describes how issues are reported, who is responsible for what actions, and how things are handled internally.

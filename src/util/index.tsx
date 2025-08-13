@@ -47,7 +47,7 @@ export const onMobileDevice = () =>
  * mobile device. Currently, no mobile device/browser supports display
  * capture. However, this will probably change in the future, so we have to
  * revisit this issue again. This is tracked in this issue:
- * https://github.com/elan-ev/opencast-studio/issues/204
+ * https://github.com/opencast/studio/issues/204
  */
 export const isDisplayCaptureSupported = () =>
   "mediaDevices" in navigator &&

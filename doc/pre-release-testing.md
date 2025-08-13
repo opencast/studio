@@ -2,7 +2,7 @@
 
 (*This document is intended for developers, not for users*)
 
-This document describes a rough guideline on how to test the application before merging `master` into `production`.
+This document describes a rough guideline on how to test the application before merging `main` into `production`.
 This is mainly to make testing easier and faster, as the tester does not have to remember everything.
 
 ### Browsers and Systems
