@@ -100,6 +100,7 @@ Opencast Studio uses the following APIs:
 
 - `/ingest/*`
 - `/info/me.json`
+- `/studio-api/series.json`
 
 You have to make sure that these APIs are accessible to the user using Studio.
 In Opencast ≥8.2, providing a user with `ROLE_STUDIO` should grant a user all necessary rights.
