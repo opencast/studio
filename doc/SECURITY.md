@@ -4,7 +4,7 @@ Security Policy
 Supported Versions
 ------------------
 
-This project has a rolling release and we only support the latest state of the branches `master`.
+This project has a rolling release and we only support the latest state of the branches `main`.
 
 
 Reporting a Vulnerability

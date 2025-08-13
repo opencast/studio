@@ -38,7 +38,7 @@ export const About: React.FC<Props> = ({ close }) => (
       </p>
       <p>
         This is free software under the terms of the{" "}
-        <a href="https://github.com/opencast/studio/blob/master/LICENSE">
+        <a href="https://github.com/opencast/studio/blob/main/LICENSE">
           MIT License
         </a>{" "}
         developed by <a href="https://elan-ev.de">elan e.V.</a> in cooperation

@@ -3,7 +3,7 @@ Opencast Studio
 
 [![Build & test](https://github.com/opencast/studio/actions/workflows/ci.yml/badge.svg)](https://github.com/opencast/studio/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/github/license/opencast/studio)
-](https://github.com/opencast/studio/blob/master/LICENSE)
+](https://github.com/opencast/studio/blob/main/LICENSE)
 
 A web-based recording studio for [Opencast](https://opencast.org).
 
@@ -52,7 +52,7 @@ information.
 
 ### Standalone Version at [studio.opencast.org](https://studio.opencast.org)
 
-Opencast Studio is always deployed from `master` branch.
+Opencast Studio is always deployed from `main` branch.
 
 You are free to use the publicly deployed version. However, there are two
 caveats.

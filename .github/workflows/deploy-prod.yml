@@ -1,9 +1,9 @@
-name: Deploy master
+name: Deploy main
 
 on:
   workflow_run:
     workflows: ["Build & test"]
-    branches: [master]
+    branches: [main]
     types: [completed]
 
 jobs:
