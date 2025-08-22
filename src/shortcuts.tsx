@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { match, screenWidthAtMost, useColorScheme } from "@opencast/appkit";
+import {
+  match, SingleKeyContainer, KeyCombinationContainer, ShortcutGroupOverview,
+} from "@opencast/appkit";
 import { LuArrowBigUp, LuOption } from "react-icons/lu";
 import { FiArrowLeft, FiArrowRight, FiCommand } from "react-icons/fi";
 import { Options, useHotkeys } from "react-hotkeys-hook";
@@ -144,7 +146,7 @@ type ShortcutKeysProps = {
 
 export const ShortcutKeys: React.FC<ShortcutKeysProps> = ({ shortcut, large = false }) => {
   const { t } = useTranslation();
-  return <div css={{ display: "flex", alignItems: "center", gap: 4, color: COLORS.neutral70 }}>
+  return <KeyCombinationContainer>
     {shortcut.split("+").map((key, i) => {
       let s = key;
       if (key in KEY_TRANSLATIONS) {
@@ -158,55 +160,20 @@ export const ShortcutKeys: React.FC<ShortcutKeysProps> = ({ shortcut, large = fa
         "Alt": () => onMac() ? <LuOption title={s} /> : <>{s}</>,
         "Shift": () => <LuArrowBigUp size={20} title={s} />,
       }) ?? <>{s}</>;
-      return (
-        <React.Fragment key={i}>
-          {i !== 0 && "+"}
-          <SingleKey large={large} monofont={key === "l"}>{child}</SingleKey>
-        </React.Fragment>
-      );
+
+      return <SingleKeyContainer key={i} css={{
+        ...key === "l" && { fontFamily: "monospace" },
+        ...!large && {
+          height: 30,
+          minWidth: 30,
+          backgroundColor: COLORS.neutral10,
+          color: COLORS.neutral80,
+        },
+      }}>
+        {child}
+      </SingleKeyContainer>;
     })}
-  </div>;
-};
-
-type SingleKeyProps = React.PropsWithChildren<{
-  large: boolean;
-  /** Whether to use `monospace` font for this one. Basically only useful for lowercase l. */
-  monofont: boolean;
-}>;
-
-const SingleKey: React.FC<SingleKeyProps> = ({ large, monofont, children }) => {
-  const isLight = useColorScheme().scheme === "light";
-  const { scheme, isHighContrast } = useColorScheme();
-
-  const bg = match(scheme, {
-    "light": () => COLORS.neutral05,
-    "dark": () => COLORS.neutral15,
-    "light-high-contrast": () => COLORS.neutral05,
-    "dark-high-contrast": () => COLORS.neutral15,
-  });
-
-  return (
-    <div css={{
-      border: `1px solid ${COLORS.neutral50}`,
-      borderRadius: 4,
-      padding: "2px 6px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: large ? 36 : 30,
-      minWidth: large ? 36 : 30,
-      fontSize: 16,
-      boxShadow: isHighContrast ? "none" : "0 0 6px var(--shadow-color)",
-      backgroundColor: large ? bg : COLORS.neutral10,
-      color: isHighContrast
-        ? COLORS.neutral80
-        : ((isLight || !large) ? COLORS.neutral80 : COLORS.neutral90),
-      cursor: "default",
-      ...monofont && { fontFamily: "monospace" },
-    }}>
-      {children}
-    </div>
-  );
+  </KeyCombinationContainer>;
 };
 
 type ShortCutOverviewProps = {
@@ -217,13 +184,23 @@ export const ShortcutOverview: React.FC<ShortCutOverviewProps> = ({ close }) => 
   const { t } = useTranslation();
 
   return <OverlayBox maxWidth={1000} close={close} title={t("shortcuts.label")}>
-    {Object.entries(SHORTCUTS).map(([groupId, group]) => (
-      <ShortcutGroupOverview
+    {Object.entries(SHORTCUTS).map(([groupId, group]) => {
+      const key = groupId as keyof typeof SHORTCUTS;
+      const shortcuts = Object.entries(group).map(([name, keys]) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        label: t((SHORTCUT_TRANSLATIONS[key] as any)[name]),
+        combinations: keys.split(";").map((combination, i) => (
+          <ShortcutKeys key={i} shortcut={combination.trim()} large />
+        )),
+      }));
+
+      return <ShortcutGroupOverview
         key={groupId}
-        groupId={groupId as keyof typeof SHORTCUTS}
-        group={group}
-      />
-    ))}
+        alternativeSeparator={t("shortcuts.sequence-seperator")}
+        title={t(GROUP_ID_TRANSLATIONS[key])}
+        shortcuts={shortcuts}
+      />;
+    })}
   </OverlayBox>;
 };
 
@@ -236,65 +213,3 @@ const GROUP_ID_TRANSLATIONS = {
   review: "steps.review.label",
   finish: "steps.finish.label",
 } as const satisfies Record<keyof typeof SHORTCUTS, string>;
-
-type ShortcutGroupOverviewProps = {
-  groupId: keyof typeof SHORTCUTS;
-  group: typeof SHORTCUTS[keyof typeof SHORTCUTS];
-};
-
-const ShortcutGroupOverview: React.FC<ShortcutGroupOverviewProps> = ({ groupId, group }) => {
-  const { t } = useTranslation();
-
-  return (
-    <section css={{
-      margin: "32px 0",
-      ":first-of-type": {
-        marginTop: 16,
-      },
-    }}>
-      <h2 css={{ fontSize: 18, marginBottom: 8 }}>{t(GROUP_ID_TRANSLATIONS[groupId])}</h2>
-      <div css={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 12,
-      }}>
-        {Object.entries(group).map(([name, keys], i) => (
-          <div
-            key={i}
-            css={{
-              width: "calc(33.33% - 24px / 3)",
-              [screenWidthAtMost(1080)]: {
-                width: "calc(50% - 12px / 2)",
-              },
-              [screenWidthAtMost(720)]: {
-                width: "100%",
-              },
-              backgroundColor: COLORS.neutral10,
-              borderRadius: 4,
-              padding: "10px 16px",
-              display: "inline-flex",
-              flexDirection: "column",
-              alignItems: "start",
-              gap: 8,
-            }}
-          >
-            <div css={{ overflowWrap: "anywhere" }}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {t((SHORTCUT_TRANSLATIONS[groupId] as any)[name])}
-            </div>
-            <div css={{
-              display: "flex",
-              gap: 8,
-              alignItems: "center",
-            }}>
-              {keys.split(";").map((combination, i) => <React.Fragment key={i}>
-                {i > 0 && t("shortcuts.sequence-seperator")}
-                <ShortcutKeys shortcut={combination.trim()} large />
-              </React.Fragment>)}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
