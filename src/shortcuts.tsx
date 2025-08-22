@@ -6,6 +6,7 @@ import {
 import { LuArrowBigUp, LuOption } from "react-icons/lu";
 import { FiArrowLeft, FiArrowRight, FiCommand } from "react-icons/fi";
 import { Options, useHotkeys } from "react-hotkeys-hook";
+import TabIcon from "@opencast/appkit/dist/icons/tab-key.svg";
 
 import { COLORS } from "./util";
 import { OverlayBox } from "./layout";
@@ -158,7 +159,8 @@ export const ShortcutKeys: React.FC<ShortcutKeysProps> = ({ shortcut, large = fa
         "right": () => <FiArrowRight title={s} />,
         "Mod": () => onMac() ? <FiCommand title={s} /> : <>{s}</>,
         "Alt": () => onMac() ? <LuOption title={s} /> : <>{s}</>,
-        "Shift": () => <LuArrowBigUp size={20} title={s} />,
+        "Shift": () => <>{s}<LuArrowBigUp size={20} title={s} /></>,
+        "Tab": () => <>{s}<TabIcon /></>,
       }) ?? <>{s}</>;
 
       return <SingleKeyContainer key={i} css={{
