@@ -1,5 +1,4 @@
-import useResizeObserver from "use-resize-observer/polyfilled";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import equal from "fast-deep-equal";
 
 import { usePresentContext } from "../util";
@@ -53,7 +52,20 @@ export const VideoBox: React.FC<VideoBoxProps> = ({
   minHeight = 140,
   children,
 }) => {
-  const { ref, width = 1, height = 1 } = useResizeObserver();
+  const [{ width, height }, setSize] = useState({ width: 1, height: 1 });
+  const resizeObserver = useMemo(() => new ResizeObserver(entries => {
+    // The fact that two arrays are involved are not relevant for our case here,
+    // they always have a single element.
+    const size = entries[0].contentBoxSize[0];
+    setSize({ width: size.inlineSize, height: size.blockSize });
+  }), []);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (ref.current) {
+      resizeObserver.observe(ref.current);
+    }
+    return () => resizeObserver.disconnect();
+  });
 
   // This is a dummy state to force a rerender.
   const [, setForceCounter] = useState(0);
