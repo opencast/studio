@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
-import { useBeforeunload } from "react-beforeunload";
 import { keyframes } from "@emotion/react";
 import { FiPauseCircle } from "react-icons/fi";
 
@@ -14,7 +13,7 @@ import { StepProps } from "..";
 import { ErrorBox } from "../../ui/ErrorBox";
 import { StepContainer } from "../elements";
 import { VideoBox, VideoBoxProps, useVideoBoxResize } from "../../ui/VideoBox";
-import { dimensionsOf } from "../../util";
+import { dimensionsOf, useUnloadBlocker } from "../../util";
 import { RecordingControls } from "./controls";
 import Recorder, { OnStopCallback } from "./recorder";
 import { useSettings } from "../../settings";
@@ -149,11 +148,7 @@ export const Recording: React.FC<StepProps> = ({ goToNextStep, goToPrevStep }) =
     });
   }
 
-  useBeforeunload(event => {
-    if (recordingState !== "inactive") {
-      event.preventDefault();
-    }
-  });
+  useUnloadBlocker(recordingState !== "inactive");
 
   return (
     <StepContainer

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Dispatcher } from "../studio-state";
 import {
   bug,
@@ -214,4 +214,24 @@ export const getUniqueDevices = (
 export const usePresentContext = <T, >(context: React.Context<T | null>, hookName: string): T => {
   return useContext(context)
     ?? bug(`hook '${hookName}' called without parent context provider`);
+};
+
+/**
+ * Prevents "unload" events (e.g. closing tab, navigating away) if `block` is
+ * `true`. Useful to warn users about unsaved data. Only use with `true` when
+ * there is actually unsaved data.
+ *
+ * Note that this doesn't work well on mobile, where the tab can be unloaded in
+ * various ways without alerting the user. Consider if another solution for
+ * mobile would be appropriate. See:
+ * https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/
+ */
+export const useUnloadBlocker = (block: boolean) => {
+  useEffect(() => {
+    if (block) {
+      const listener = (event: BeforeUnloadEvent) => event.preventDefault();
+      window.addEventListener("beforeunload", listener);
+      return () => window.removeEventListener("beforeunload", listener);
+    }
+  });
 };
