@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 
 import { COLORS, focusStyle } from "../util";
 import { useColorScheme } from "@opencast/appkit";

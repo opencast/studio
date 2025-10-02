@@ -5,7 +5,7 @@ import {
   screenWidthAtMost, match,
 } from "@opencast/appkit";
 import { useTranslation } from "react-i18next";
-import React, { forwardRef } from "react";
+import React, { forwardRef, JSX } from "react";
 
 import { DEFINES } from "../defines";
 import KeyboardIcon from "../icons/keyboard.svg";
@@ -24,7 +24,7 @@ export const Header: React.FC<Props> = ({ setOverlayBoxState, inert }) => {
   const { scheme, isHighContrast } = useColorScheme();
 
   return (
-    <header {...{ inert: inert ? "" : null }} css={{
+    <header {...{ inert }} css={{
       backgroundColor: match(scheme, {
         "light": () => COLORS.neutral60,
         "dark": () => COLORS.neutral20,

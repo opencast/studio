@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from "react";
+import { JSX, useEffect, useId, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Oscilloscope from "oscilloscope";
 import { Spinner, useColorScheme } from "@opencast/appkit";

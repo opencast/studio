@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 import { Spinner, WithTooltip, match, unreachable, useColorScheme } from "@opencast/appkit";
 import { Trans, useTranslation } from "react-i18next";
 import { LuInfo, LuVolume2, LuVolumeX } from "react-icons/lu";

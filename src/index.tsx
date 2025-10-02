@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import ReactDOM from "react-dom/client";
 import { notNullish } from "@opencast/appkit";
 

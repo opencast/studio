@@ -2,7 +2,7 @@ import { Floating, FloatingContainer, FloatingTrigger, ProtoButton, match, useCo
 import { useTranslation } from "react-i18next";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { CSSObject } from "@emotion/react";
-import { useState } from "react";
+import { JSX, useState } from "react";
 
 import { COLORS, focusStyle } from "../util";
 import { SHORTCUTS, ShortcutKeys, useShortcut, useShowAvailableShortcuts } from "../shortcuts";

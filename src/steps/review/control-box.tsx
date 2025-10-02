@@ -14,7 +14,7 @@ import { SHORTCUTS, ShortcutKeys, useShortcut, useShowAvailableShortcuts } from 
 
 
 type SharedProps = {
-  previewController: React.RefObject<PreviewHandle>;
+  previewController: React.RefObject<PreviewHandle | null>;
   currentTime: number;
 };
 
@@ -232,8 +232,8 @@ const CutMarker: React.FC<CutMarkerProps> = ({ side, isHighContrast }) => (
 );
 
 type DraggableProps = React.PropsWithChildren<{
-  previewController: RefObject<PreviewHandle>;
-  scrubberRef: RefObject<HTMLDivElement>;
+  previewController: RefObject<PreviewHandle | null>;
+  scrubberRef: RefObject<HTMLDivElement | null>;
   initialTime: number;
 
   /** Called on every mouse move with the updated value */
@@ -263,7 +263,7 @@ const Draggable: React.FC<DraggableProps> = ({
 
   const initialPos = initialTime / duration;
   const pos = useRef<number>(initialPos);
-  const scrubberRect = useRef<DOMRect>();
+  const scrubberRect = useRef<DOMRect>(null);
   const ref = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
 
