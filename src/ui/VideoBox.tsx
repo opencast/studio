@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { JSX, useEffect, useMemo, useRef, useState } from "react";
 import equal from "fast-deep-equal";
 
 import { usePresentContext } from "../util";

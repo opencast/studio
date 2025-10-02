@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { match, notNullish, screenWidthAbove, screenWidthAtMost, useColorScheme } from "@opencast/appkit";
 import { FiCircle } from "react-icons/fi";
@@ -38,7 +38,7 @@ export const Main: React.FC<Props> = ({ inert }) => {
   };
 
   return (
-    <main {...{ inert: inert ? "" : null }} css={{
+    <main {...{ inert }} css={{
       display: "flex",
       flex: 1,
       backgroundColor: COLORS.neutral10,

@@ -1,9 +1,8 @@
-import { ColorSchemeProvider } from "@opencast/appkit";
+import { ColorSchemeProvider, useUnloadBlocker } from "@opencast/appkit";
 
 import { Root } from "./layout";
 import { GlobalStyle } from "./ui/global-style";
 import { useStudioState } from "./studio-state";
-import { useUnloadBlocker } from "./util";
 
 
 

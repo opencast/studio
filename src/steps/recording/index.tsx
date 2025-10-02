@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { keyframes } from "@emotion/react";
 import { FiPauseCircle } from "react-icons/fi";
+import { useColorScheme, useUnloadBlocker } from "@opencast/appkit";
 
 import {
   useStudioState, useDispatch, Dispatcher, Recording as StudioRecording,
@@ -13,11 +14,10 @@ import { StepProps } from "..";
 import { ErrorBox } from "../../ui/ErrorBox";
 import { StepContainer } from "../elements";
 import { VideoBox, VideoBoxProps, useVideoBoxResize } from "../../ui/VideoBox";
-import { dimensionsOf, useUnloadBlocker } from "../../util";
+import { dimensionsOf } from "../../util";
 import { RecordingControls } from "./controls";
 import Recorder, { OnStopCallback } from "./recorder";
 import { useSettings } from "../../settings";
-import { useColorScheme } from "@opencast/appkit";
 
 
 export type RecordingState = "inactive" | "paused" | "recording";
@@ -73,8 +73,8 @@ export const Recording: React.FC<StepProps> = ({ goToNextStep, goToPrevStep }) =
 
   const [recordingState, setRecordingState] = useState<RecordingState>("inactive");
 
-  const desktopRecorder = useRef<Recorder>();
-  const videoRecorder = useRef<Recorder>();
+  const desktopRecorder = useRef<Recorder>(null);
+  const videoRecorder = useRef<Recorder>(null);
 
   const canRecord = (displayStream || userStream)
     && !userUnexpectedEnd && !displayUnexpectedEnd && !audioUnexpectedEnd;

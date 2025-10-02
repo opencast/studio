@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, useEffect, useId, useRef, useState } from "react";
+import { HTMLInputTypeAttribute, JSX, useEffect, useId, useRef, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import Select, { CSSObjectWithLabel, SelectInstance } from "react-select";
 import {
