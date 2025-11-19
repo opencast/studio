@@ -1,5 +1,4 @@
-import { ColorSchemeProvider } from "@opencast/appkit";
-import { useBeforeunload } from "react-beforeunload";
+import { ColorSchemeProvider, useUnloadBlocker } from "@opencast/appkit";
 
 import { Root } from "./layout";
 import { GlobalStyle } from "./ui/global-style";
@@ -24,11 +23,7 @@ const PreventClose = () => {
   const uploaded = upload.state === "uploaded";
   const uploading = upload.state === "uploading";
 
-  useBeforeunload(event => {
-    if ((recordings?.length > 0 && !uploaded && !downloaded) || uploading) {
-      event.preventDefault();
-    }
-  });
+  useUnloadBlocker((recordings?.length > 0 && !uploaded && !downloaded) || uploading);
 
   return null;
 };

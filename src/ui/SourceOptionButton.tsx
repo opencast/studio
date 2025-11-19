@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { ProtoButton, useColorScheme } from "@opencast/appkit";
 
 import { COLORS, focusStyle } from "../util";
