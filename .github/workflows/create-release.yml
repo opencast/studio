@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: use node.js 17.x
         uses: actions/setup-node@v6
