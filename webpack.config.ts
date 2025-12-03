@@ -86,27 +86,29 @@ const config: CallableWebpackConfiguration = (_env, argv) => ({
           noErrorOnMissing: true,
         }] : [],
 
-        // Copy the font related files to output directory
+        // Copy individual font files to output directory
         {
-          from: path.join(__dirname, "node_modules/@fontsource-variable/@(roboto-flex|vazirmatn)/index.css"),
-          to: "font.css",
-          transformAll: assets => assets.map(assets => assets.data)
-            .join("\n")
-            .replace(/url\(.\/files\//g, "url(./fonts/"),
+          from: path.join(__dirname, "node_modules/@fontsource-variable/roboto-flex/index.css"),
+          to: path.join(OUT_PATH, "font-roboto.css"),
+          transform: (content) => content.toString().replace(/url\(.\/files\//g, "url(./fonts/"),
         },
-        ...(
-          [
-            "roboto-flex-cyrillic-ext-wght-normal.woff2",
-            "roboto-flex-cyrillic-wght-normal.woff2",
-            "roboto-flex-greek-wght-normal.woff2",
-            "roboto-flex-vietnamese-wght-normal.woff2",
-            "roboto-flex-latin-ext-wght-normal.woff2",
-            "roboto-flex-latin-wght-normal.woff2",
-          ].map(font => ({
-            from: path.join(__dirname, "node_modules/@fontsource-variable/roboto-flex/files/", font),
-            to: path.join(OUT_PATH, "fonts", font),
-          }))
-        ),
+        {
+          from: path.join(__dirname, "node_modules/@fontsource-variable/vazirmatn/index.css"),
+          to: path.join(OUT_PATH, "font-vazirmatn.css"),
+          transform: (content) => content.toString().replace(/url\(.\/files\//g, "url(./fonts/"),
+        },
+        // Copy font files
+        ...[
+          "roboto-flex-cyrillic-ext-wght-normal.woff2",
+          "roboto-flex-cyrillic-wght-normal.woff2",
+          "roboto-flex-greek-wght-normal.woff2",
+          "roboto-flex-vietnamese-wght-normal.woff2",
+          "roboto-flex-latin-ext-wght-normal.woff2",
+          "roboto-flex-latin-wght-normal.woff2",
+        ].map((font) => ({
+          from: path.join(__dirname, "node_modules/@fontsource-variable/roboto-flex/files/", font),
+          to: path.join(OUT_PATH, "fonts", font),
+        })),
         {
           from: path.join(__dirname,
             "node_modules/@fontsource-variable/vazirmatn/files/vazirmatn-arabic-wght-normal.woff2"),
