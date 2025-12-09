@@ -1,0 +1,196 @@
+{
+  "confirm-discard-recordings": "Er du sikker på, at du vil kassere dine optagelser? Dette kan ikke fortrydes!",
+  "sources-scenario-display-and-user": "Skærm & kamera",
+  "sources-scenario-display": "Skærm",
+  "sources-scenario-user": "Kamera",
+  "sources-display": "Skærm",
+  "sources-user": "Kamera",
+  "error-lost-video-stream": "Videostrømmen stoppede uventet! Mistede en kameraforbindelse, eller delte du ved et uheld ikke videokilden?",
+  "error-lost-audio-stream": "Lydstrømmen stoppede uventet! Mistede mikrofonen forbindelsen, eller delte du ved et uheld ikke lydkilden?",
+  "error-lost-stream-end-recording": "En video- eller lydstrøm stoppede uventet, og den aktive optagelse blev afbrudt! Mistede en mikrofon eller et kamera forbindelsen? Eller delte du ved et uheld ikke mediet eller fjernede de nødvendige tilladelser?",
+  "warning-https": "De fleste browsere tillader ikke videoptagelse over en ukrypteret forbindelse (HTTP). Skift til HTTPS.",
+  "warning-recorder-not-supported": "Din browser understøtter ikke optagelse af mediestrømme.",
+  "warning-recorder-safari-hint": "Hvis du bruger Safari, kan du aktivere den eksperimentelle funktion 'MediaRecorder' i indstillingerne. På macOS anbefales det dog at bruge Chrome eller Firefox.",
+
+  "header": {
+    "info": {
+      "label": "Info"
+    },
+    "theme": {
+      "label": "Udseende",
+      "dark": "Mørk",
+      "light": "Lys",
+      "dark-high-contrast": "Mørk (høj kontrast)",
+      "light-high-contrast": "Lys (høj kontrast)",
+      "auto": "Auto"
+    },
+    "language": {
+      "label": "Sprog"
+    }
+  },
+  "steps": {
+    "back-button-label": "Tilbage",
+    "next-button-label": "Næste",
+    "video": {
+      "label": "Vælg videokilde",
+      "share-display": "Del skærm",
+      "share-user": "Del kamera",
+      "share-display-and-user": "Del skærm & kamera",
+      "display-not-allowed-title": "Kan ikke få adgang til din skærm",
+      "display-not-allowed-text": "Prøv at vælge kilden igen. Hvis det ikke virker, genindlæs siden eller giv manuelt adgang til skærmen (normalt via en knap ved browserens adressefelt).",
+      "user-not-allowed-title": "Kan ikke få adgang til dit kamera",
+      "user-not-allowed-text": "Prøv at vælge kilden igen. Hvis det ikke virker, genindlæs siden eller giv manuelt adgang til kameraet (normalt via en knap ved browserens adressefelt). Hvis det stadig ikke virker, luk andre programmer, der måske bruger kameraet: nogle systemer tillader kun én applikation ad gangen.",
+      "display-selected": "Skærm valgt",
+      "display-and-user-selected": "Skærm & kamera valgt",
+      "user-selected": "Kamera valgt",
+      "question": "Hvilke videokilder skal optages?",
+      "none-available": "Din browser/enhed understøtter ikke optagelse af skærm eller kamera :-(",
+      "reselect-source": "Vælg kilde(r) igen",
+      "no-cam-detected": "Intet kamera fundet",
+      "display-not-supported": "Skærmoptagelse understøttes ikke",
+      "video-settings-open": "Åbn videoindstillinger",
+      "video-settings-close": "Luk videoindstillinger",
+      "device": "Enhed",
+      "aspect-ratio": "Billedformat",
+      "aspect-ratio-auto": "auto",
+      "quality": "Kvalitet",
+      "quality-auto": "auto",
+      "preferences-note": "<0>Bemærk:</0> dette er kun præferencer, og ikke alle muligheder understøttes på din enhed. Vælg 'auto', hvis du er i tvivl.",
+      "display-audio-shared": "Skærmens lyd vil blive optaget.",
+      "display-audio-not-shared": "Skærmens lyd vil ikke blive optaget. <0>Bemærk</0>: Ikke alle browsere og systemer understøtter skærmlyd."
+    },
+    "audio": {
+      "label": "Vælg lydkilde",
+      "question": "Optag lyd?",
+      "microphone": "Mikrofon",
+      "microphone-selected": "Mikrofon valgt",
+      "without-audio": "Ingen lyd",
+      "reselect-audio": "Vælg lyd igen",
+      "not-allowed-title": "Kan ikke få adgang til mikrofonen",
+      "not-allowed-text": "Prøv at vælge 'Vælg lyd igen' og vælg mikrofonen på ny. Hvis det ikke virker, genindlæs siden eller giv manuelt adgang til mikrofonen (normalt via en knap ved browserens adressefelt).",
+      "device": "Enhed"
+    },
+    "record": {
+      "label": "Optag",
+      "pause-button-title": "Pause optagelse",
+      "record-button-title": "Start optagelse",
+      "resume-button-title": "Genoptag optagelse",
+      "stop-button-title": "Stop optagelse",
+      "is-paused": "Optagelsen er pauset"
+    },
+    "review": {
+      "label": "Gennemse & klip",
+      "only-on-upload-note": "Du kan kun klippe videoen, hvis den uploades.",
+      "button-discard-and-record": "Slet og optag igen",
+      "error-empty-recording": "Fejl: din optagelse er helt tom. Stoppede du optagelsen næsten med det samme? Sørg også for, at dit system kan håndtere videoptagelse (hvis andre programmer bruger systemet tungt eller enheden er meget gammel, kan dette være et problem). Hvis systemet er kraftigt nok, optog du i flere sekunder, og fejlen stadig vises: rapporter det som en fejl på GitHub.",
+      "set-start": "Sæt nuværende tidspunkt som start",
+      "set-end": "Sæt nuværende tidspunkt som slut",
+      "part-will-be-removed": "Denne del vil blive fjernet",
+      "play": "Afspil",
+      "pause": "Pause",
+      "jump-to-cut-point": "Hop til klippunkt"
+    },
+    "finish": {
+      "label": "Gem video",
+      "finish-button": "Færdig",
+      "return-to": "Afslut og gå tilbage til {{label}}",
+      "return-to-no-label": "Afslut Opencast Studio og gå tilbage",
+      "new-recording": "Start ny optagelse",
+      "new-recording-warning": "Hvis du starter en ny optagelse, slettes den nuværende. Er du sikker?",
+      "upload": {
+        "label": "Upload",
+        "validation-error-required": "Dette felt er påkrævet.",
+        "complete": "Upload fuldført!",
+        "complete-explanation": "Din optagelse bliver nu behandlet af Opencast.",
+        "label-presenter": "Præsentator",
+        "label-title": "Titel",
+        "label-series": "Serie",
+        "series-placeholder": "Vælg en serie",
+        "series-none": "Ingen serie",
+        "series-unknown": "Ukendt serie",
+        "series-fetch-error": "Kunne ikke hente tilgængelige serier.",
+        "series-connection-settings-hint": "Tjek forbindelsesindstillinger nedenfor.",
+        "series-loading": "Indlæser...",
+        "upload-network-error": "Upload mislykkedes: netværksfejl. Tjek internetforbindelsen! Andre mulige årsager: Opencast-serveren er utilgængelig eller forkert konfigureret.",
+        "upload-invalid-response": "Upload mislykkedes: uventet svar fra serveren.",
+        "upload-not-authorized": "Upload mislykkedes: du ser ikke ud til at have tilladelse.",
+        "upload-unknown-error": "Upload mislykkedes: ukendt fejl.",
+        "warn-download-hint": "Hvis problemet fortsætter, gem optagelsen lokalt for at undgå tab.",
+        "currently-uploading": "Uploader...",
+        "settings-header": "Opencast-forbindelse",
+        "settings-label-server-url": "Server URL",
+        "settings-label-username": "Brugernavn",
+        "settings-label-password": "Adgangskode",
+        "settings-invalid-url": "Dette er ikke en gyldig URL",
+        "settings-invalid-url-http-start": "URL skal starte med 'https://' eller 'http://'",
+        "settings-invalid-login-data": "Kunne ikke logge ind på Opencast-serveren: brugernavn/adgangskode er ugyldig.",
+        "settings-invalid-provided-login": "Serveren angiver automatisk login, men anmodningen blev ikke autentificeret. Dette er enten en intern fejl i Opencast Studio eller serveren er forkert konfigureret.",
+        "time": {
+          "a-few-seconds": "et par sekunder",
+          "a-minute": "et minut",
+          "an-hour": "en time",
+          "seconds": "sekunder",
+          "minutes": "minutter",
+          "hours": "timer",
+          "left": "{{time}} tilbage"
+        }
+      },
+      "save-locally": {
+        "label": "Gem lokalt",
+        "save-desktop-locally": "Gem skærmoptagelse lokalt",
+        "save-video-locally": "Gem kameraoptagelse lokalt",
+        "recording-saved": "Optagelse gemt"
+      }
+    }
+  },
+  "shortcuts": {
+    "label": "Genveje",
+    "sequence-seperator": "eller",
+    "general": {
+      "title": "Generelt",
+      "show-available-shortcuts": "Vis tilgængelige genveje",
+      "show-overview": "Vis oversigt",
+      "close-overlay": "Luk dialog",
+      "tab-elements": "Naviger gennem elementer",
+      "next-button": "Næste/​Bekræft",
+      "back-button": "Tilbage/​Kassér"
+    },
+    "select-video": {
+      "select-display": "Vælg skærm",
+      "select-camera": "Vælg kamera",
+      "select-both": "Vælg skærm & kamera"
+    },
+    "select-audio": {
+      "select-microphone": "Vælg mikrofon",
+      "select-no-audio": "Vælg ingen lyd"
+    },
+    "record": {
+      "start-pause-resume-recording": "Start/​pause optagelse"
+    },
+    "review": {
+      "play-pause": "Afspil/​Pause video",
+      "skip-five": "5 sekunder frem",
+      "back-five": "5 sekunder tilbage",
+      "frame-forward": "Én frame frem",
+      "frame-back": "Én frame tilbage",
+      "cut-left": "Klip venstre",
+      "cut-right": "Klip højre",
+      "delete-left": "Slet venstre klipmarkør",
+      "delete-right": "Slet højre klipmarkør"
+    },
+    "finish": {
+      "new-recording": "Start ny optagelse"
+    },
+    "keys": {
+      "escape": "Esc",
+      "control": "Ctrl",
+      "alt": "Alt",
+      "option": "Option",
+      "command": "Cmd",
+      "space": "Mellemrum",
+      "shift": "Shift",
+      "left": "Venstre",
+      "right": "Højre"
+    }
+  }
+}
