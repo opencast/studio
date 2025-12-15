@@ -9,6 +9,7 @@ const languages = [
   { short: "zh", long: "简体中文", rtl: false },
   { short: "ca", long: "Català", rtl: false },
   { short: "it", long: "Italiano", rtl: false },
+  { short: "da", long: "Dansk", rtl: false },
 ];
 
 export default languages;

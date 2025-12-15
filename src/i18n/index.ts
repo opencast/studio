@@ -12,6 +12,7 @@ import slTranslations from "./locales/sl.json";
 import zhTranslations from "./locales/zh.json";
 import caTranslations from "./locales/ca.json";
 import itTranslations from "./locales/it.json";
+import daTranslations from "./locales/da.json";
 
 const resources = {
   en: { translation: enTranslations },
@@ -24,6 +25,7 @@ const resources = {
   zh: { translation: zhTranslations },
   ca: { translation: caTranslations },
   it: { translation: itTranslations },
+  da: { translation: daTranslations },
 };
 
 export type TranslationKey = keyof CustomTypeOptions["resources"]["translation"];
