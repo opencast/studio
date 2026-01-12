@@ -36,7 +36,7 @@ jobs:
         PUBLIC_PATH=${deploydir} npm run build:release
 
     - name: Archive test deployment files as artifact
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: test-deployment-files
         include-hidden-files: true
@@ -54,7 +54,7 @@ jobs:
 
     - name: Archive prod deployment files as artifact
       if: github.repository_owner == 'opencast' && github.ref == 'refs/heads/main'
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: prod-deployment-files
         include-hidden-files: true
