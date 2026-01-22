@@ -109,24 +109,91 @@ In older versions, you might need to create such a role in the security configur
 
 ## Build Instructions
 
-To build Studio yourself, execute these commands:
+To clone Studio, execute these commands:
 
 ```sh
 % git clone git@github.com:opencast/studio.git
 % cd studio
 % npm install
+```
+
+### Serve From Build Folder
+
+You can serve the application from the `build/` folder.
+
+```sh
 % npm run build:release   # or npm run build:dev for development
 ```
 
 This will generate static content you can serve via any web server in `build/`.
-That's it.
 
-If you prefer to run a local development server directly, you can use this
-instead:
+### Serve From Local Development Server
+
+If you prefer to run a local development server directly, you can use this instead:
+
+#### Unix-like OS
+
+Unix-like (Linux and macOS) operating systems can use
 
 ```sh
-% npm start
+% npm run start
 ```
+
+#### Windows OS 
+
+Windows-family operating systems can use 
+ - Git Bash,
+ - PowerShell, 
+ - Windows Command Prompt(CMD) or,
+ - Windows Subsystem for Linux 2(WSL2)
+
+```sh
+% npm run winstart
+```
+
+
+> [!CAUTION]
+> ### PowerShell Execution Policy
+> 
+> PowerShell’s execution policy may prevent npm scripts from running. 
+> 
+> You can temporarily or permanently allow running scripts by modifying PowerShell's execution policy. 
+> 
+> **Option 1: Use Git Bash, CMD or WSL2**
+> - **Git Bash and Windows Command Prompt** don’t enforce execution policies like PowerShell.
+> - **Windows Subsystem for Linux 2** allows the use of a GNU/Linux environment from within Windows.
+> - **PowerShell** has security restrictions that prevent running scripts unless explicitly allowed.
+> 
+> **Option 2: Temporary PowerShell Fix (For Current Session Only)**
+> Run this in PowerShell before running your `npm` command:
+> 
+> ```sh
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+> ```
+>
+> - This only affects the current PowerShell session.
+> - After closing PowerShell, the original policy is restored.
+>
+> **Option 3: Permanent PowerShell Fix (For Your User Account)**
+> If you want to allow scripts permanently (for your user account only), run:
+> 
+> ```sh
+> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+> ```
+>
+> - This allows scripts to run if they are locally created or digitally signed.
+> - Safer than Unrestricted, which allows all scripts.
+>
+> **Option 4: Completely Disable PowerShell Execution Policy (Not Recommended)**
+> If you want to remove all script restrictions (**⚠ security risk**), run:
+> 
+> ```sh
+> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
+> ```
+>
+> **⚠ Warning**: This allows running any script, including potentially harmful ones.
+>
+
 
 ### Additional Build Options
 
