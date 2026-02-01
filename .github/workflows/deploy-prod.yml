@@ -32,7 +32,7 @@ jobs:
         fi
 
     - name: Download artifacts from build workflow
-      uses: dawidd6/action-download-artifact@v12
+      uses: dawidd6/action-download-artifact@v14
       with:
         name: prod-deployment-files
         run_id: ${{ github.event.workflow_run.id }}
