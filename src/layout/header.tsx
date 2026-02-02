@@ -155,7 +155,7 @@ const InfoButton: React.FC<BoxOpenButtonProps> = ({ open }) => {
 
 const ShortCutsButton: React.FC<BoxOpenButtonProps> = ({ open }) => {
   const { t } = useTranslation();
-  useShortcut(SHORTCUTS.general.showOverview, open, { useKey: true });
+  useShortcut(SHORTCUTS.general.showOverview, open, { useKey: true, ignoreModifiers: true });
   const showShortcut = useShowAvailableShortcuts();
   return (
     <HeaderButton onClick={open} icon={<KeyboardIcon />} label={t("shortcuts.label")}>
