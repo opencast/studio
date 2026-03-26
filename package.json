@@ -11,6 +11,7 @@
   "homepage": "https://studio.opencast.org",
   "scripts": {
     "start": "COMMIT_SHA=$(git rev-parse --short HEAD) BUILD_DATE=$(date -u '+%Y-%m-%d') webpack serve --open --mode=development",
+    "winstart": "set COMMIT_SHA=%COMMIT_SHA% && set BUILD_DATE=%BUILD_DATE% && webpack serve --open --mode=development",
     "build:dev": "COMMIT_SHA=$(git rev-parse --short HEAD) BUILD_DATE=$(date -u '+%Y-%m-%d') webpack --progress --mode=development",
     "build:release": "COMMIT_SHA=$(git rev-parse --short HEAD) BUILD_DATE=$(date -u '+%Y-%m-%d') webpack --progress --mode=production",
     "typecheck": "tsc --skipLibCheck",
