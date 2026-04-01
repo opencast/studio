@@ -1,9 +1,9 @@
-name: Deploy main
+name: Deploy develop
 
 on:
   workflow_run:
     workflows: ["Build & test"]
-    branches: [main]
+    branches: [develop]
     types: [completed]
 
 jobs:
