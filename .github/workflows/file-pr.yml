@@ -62,11 +62,11 @@ jobs:
           echo "${{ secrets.MODULE_PR_TOKEN }}" > token.txt
           gh auth login --with-token < token.txt
           export CURRENT_PR=$(gh pr list -R ${{ github.repository_owner }}/opencast --head t/studio-${{ steps.branch-name.outputs.branch }} --json number --jq '.[].number')
+          git push origin t/studio-${{ steps.branch-name.outputs.branch }} --force
           if [ -n "$CURRENT_PR" ]; then
             gh pr edit $CURRENT_PR \
               --body "Updating Opencast ${{ steps.branch-name.outputs.branchanch }} studio module to [${{ github.sha }}](https://github.com/${{ github.repository_owner }}/studio/commit/${{ github.sha }})" \
               -R ${{ github.repository_owner }}/opencast
-            git push origin t/studio-${{ steps.branch-name.outputs.branch }} --force
           else
             gh pr create \
               --title "Update ${{ steps.branch-name.outputs.branch }} Studio" \
