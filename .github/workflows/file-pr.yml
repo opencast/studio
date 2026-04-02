@@ -66,12 +66,12 @@ jobs:
             gh pr edit $CURRENT_PR \
               --body "Updating Opencast ${{ steps.branch-name.outputs.branchanch }} studio module to [${{ github.sha }}](https://github.com/${{ github.repository_owner }}/studio/commit/${{ github.sha }})" \
               -R ${{ github.repository_owner }}/opencast
-            git push origin t/studio-${{ github.ref_name }} --force
+            git push origin t/studio-${{ steps.branch-name.outputs.branch }} --force
           else
             gh pr create \
               --title "Update ${{ steps.branch-name.outputs.branch }} Studio" \
               --body "Updating Opencast ${{ steps.branch-name.outputs.branch }} Studio module to [${{ github.sha }}](https://github.com/${{ github.repository_owner }}/studio/commit/${{ github.sha }})" \
-              --head=${{ github.repository_owner }}:t/studio-${{ github.ref_name }} \
+              --head=${{ github.repository_owner }}:t/studio-${{ steps.branch-name.outputs.branch }} \
               --base ${{ github.ref_name }} \
               -R ${{ github.repository_owner }}/opencast
               #FIXME: fine grained PATs can't apply labels
