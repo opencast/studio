@@ -1,0 +1,80 @@
+name: File upstream PR
+
+on:
+  push:
+    branches:
+      - develop
+      - r/*
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  file-upstream-studio-pr:
+    name: Create upstream studio PR to incorporate build
+    if: github.repository_owner == 'opencast'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # For the release
+      pull-requests: write  # For the PR in the upstream repo
+
+    steps:
+      - name: Prepare git
+        run: |
+          git config --global user.name "Studio Commit Bot"
+          git config --global user.email "cloud@opencast.org"
+
+      - name: Prepare GitHub SSH key
+        env:
+          DEPLOY_KEY: ${{ secrets.MODULE_PR_DEPLOY_KEY }}
+        run: |
+          install -dm 700 ~/.ssh/
+          echo "${DEPLOY_KEY}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Determine pretty branch name
+        id: branch-name
+        run: |
+          #Temp becomes something like r/17.x
+          export TEMP=${{ github.ref_name }}
+          #Strip the r/ prefix, giving us just 17.x.  If this is main/develop this does nothing
+          echo "branch=${TEMP#r\/}" >> $GITHUB_OUTPUT
+
+      - name: Clone upstream repository
+        run: |
+          git clone -b ${{ github.ref_name }} "git@github.com:${{ github.repository_owner }}/opencast.git" opencast
+          cd opencast
+          git checkout -b t/studio-${{ steps.branch-name.outputs.branch }}
+
+      - name: Update the studio submodule
+        working-directory: opencast
+        run: |
+          # Note: This could be a race condition in that rapid submodule pushes can trigger multiple PRs in short order
+          # and we don't have a guarantee that the update triggered by commit A does not end up finding commit B
+          # We are going to ignore this possibility since we almost universally want the *latest* commit, though this
+          # could end up causing the commit message, and the actual submodule hash to differ.
+          git submodule update --init --remote modules/studio
+          git add modules/studio
+          git commit -m "Updating studio to ${{ github.sha }}"
+          # This token is an account wide token which allows creation of PRs and pushes.
+          echo "${{ secrets.MODULE_PR_TOKEN }}" > token.txt
+          gh auth login --with-token < token.txt
+          export CURRENT_PR=$(gh pr list -R ${{ github.repository_owner }}/opencast --head t/studio-${{ steps.branch-name.outputs.branch }} --json number --jq '.[].number')
+          git push origin t/studio-${{ steps.branch-name.outputs.branch }} --force
+          if [ -n "$CURRENT_PR" ]; then
+            gh pr edit $CURRENT_PR \
+              --body "Updating Opencast ${{ steps.branch-name.outputs.branchanch }} studio module to [${{ github.sha }}](https://github.com/${{ github.repository_owner }}/studio/commit/${{ github.sha }})" \
+              -R ${{ github.repository_owner }}/opencast
+          else
+            gh pr create \
+              --title "Update ${{ steps.branch-name.outputs.branch }} Studio" \
+              --body "Updating Opencast ${{ steps.branch-name.outputs.branch }} Studio module to [${{ github.sha }}](https://github.com/${{ github.repository_owner }}/studio/commit/${{ github.sha }})" \
+              --head=${{ github.repository_owner }}:t/studio-${{ steps.branch-name.outputs.branch }} \
+              --base ${{ github.ref_name }} \
+              -R ${{ github.repository_owner }}/opencast
+              #FIXME: fine grained PATs can't apply labels
+              #FIXME: classic PATs don't have the permissions because the PR isn't in an opencastproject (the user) repo
+              #--label studio --label maintenance \
+          fi
