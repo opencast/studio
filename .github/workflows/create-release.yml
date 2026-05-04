@@ -23,7 +23,7 @@ jobs:
         run: echo 'y' | ./.github/create-release.sh
 
       - name: create new release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: oc-studio-*.tar.gz
           draft: true
