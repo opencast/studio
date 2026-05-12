@@ -1,6 +1,6 @@
 import fixWebmDuration from "webm-duration-fix";
 import { Settings } from "../../settings";
-import { dimensionsOf } from "../../util";
+import { dimensionsOf, onSafari } from "../../util";
 
 
 export type OnStopCallback = (args: {
@@ -14,6 +14,7 @@ export default class Recorder {
   #recorder: MediaRecorder;
   #data: Blob[] = [];
   #dimensions: [number, number] | null;
+  #silentAudioCtx: AudioContext | null = null;
 
   onStop: OnStopCallback;
 
@@ -43,6 +44,20 @@ export default class Recorder {
 
     this.#dimensions = dimensionsOf(stream);
     this.onStop = onStop;
+
+    // Safari workaround: when recording a video-only stream (no audio
+    // tracks), Safari produces a file whose duration is roughly doubled.
+    // Adding a silent audio track prevents this.
+    if (onSafari() && stream.getAudioTracks().length === 0) {
+      const audioCtx = new AudioContext();
+      this.#silentAudioCtx = audioCtx;
+      const dest = audioCtx.createMediaStreamDestination();
+      const src = audioCtx.createConstantSource();
+      src.offset.value = 0;
+      src.connect(dest);
+      src.start();
+      stream = new MediaStream([...stream.getVideoTracks(), ...dest.stream.getAudioTracks()]);
+    }
 
     const videoBitsPerSecond = settings?.videoBitrate;
     this.#recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond });
@@ -78,6 +93,8 @@ export default class Recorder {
     const url = URL.createObjectURL(media);
 
     this.#reset();
+    this.#silentAudioCtx?.close();
+    this.#silentAudioCtx = null;
 
     this.onStop?.({ url, media, mimeType, dimensions: this.#dimensions });
   };
