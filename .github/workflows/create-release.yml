@@ -5,6 +5,9 @@ on:
 
 name: Create release draft
 
+env:
+  NODE_VERSION: 24
+
 jobs:
   build:
     name: Create release from tag
@@ -14,10 +17,17 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v6
 
-      - name: use node.js 17.x
+      - name: use node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 17
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Ensure our node version matches the main repo's version
+        run: |
+          [[ "$(curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.ref_name }}/pom.xml | \
+              grep node.version | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)" == "$NODE_VERSION" ]] \
+          && exit 0 \
+          || (echo "Node version does not match"; exit 1)
 
       - name: create release tarball
         run: echo 'y' | ./.github/create-release.sh

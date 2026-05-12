@@ -2,6 +2,10 @@ name: Build & test
 
 on: [pull_request, push]
 
+
+env:
+  NODE_VERSION: 24
+
 jobs:
   main:
     # We don't build PRs from dependabot, as we run everything for its branch push anyway
@@ -11,7 +15,21 @@ jobs:
     - uses: actions/checkout@v6
     - uses: actions/setup-node@v6
       with:
-        node-version: 17
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Ensure our node version matches the main repo's version
+      if: github.event_name == 'pull_request'
+      run: |
+        [[ "$(curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.base_ref }}/pom.xml | \
+            grep node.version | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)" == "$NODE_VERSION" ]] \
+        && exit 0 \
+        || (echo "Node version does not match"; exit 1)
+    - name: Ensure our node version matches the main repo's version
+      if: github.event_name == 'push'
+      run: |
+        [[ "$(curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.ref_name }}/pom.xml | \
+            grep node.version | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)" == "$NODE_VERSION" ]] \
+        && exit 0 \
+        || (echo "Node version does not match"; exit 1)
     - run: npm ci
     - run: npx eslint src --max-warnings=0
     - run: npm run build:dev
