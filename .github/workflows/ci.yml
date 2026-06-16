@@ -16,20 +16,23 @@ jobs:
     - uses: actions/setup-node@v6
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Ensure our node version matches the main repo's version
+    - name: Ensure our node version matches the main repo's version for pull requests
       if: github.event_name == 'pull_request'
       run: |
-        [[ "$(curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.base_ref }}/pom.xml | \
-            grep node.version | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)" == "$NODE_VERSION" ]] \
+        curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.base_ref }}/pom.xml -o pom.xml
+        export FOUND_VERSION="$(grep node.version pom.xml | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)"
+        [[ "$FOUND_VERSION" == "$NODE_VERSION" ]] \
         && exit 0 \
-        || (echo "Node version does not match"; exit 1)
-    - name: Ensure our node version matches the main repo's version
-      if: github.event_name == 'push'
+        || (echo "Node version does not match.  Expected $NODE_VERSION, found $FOUND_VERSION"; exit 1)
+
+    - name: Ensure our node version matches the main repo's version for push events
+      if: github.event_name == 'push' && (startsWith("r/", github.ref_name) || "develop" == github.ref_name)
       run: |
-        [[ "$(curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.ref_name }}/pom.xml | \
-            grep node.version | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)" == "$NODE_VERSION" ]] \
+        curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.ref_name }}/pom.xml -o pom.xml
+        export FOUND_VERSION="$(grep node.version pom.xml | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)"
+        [[ "$FOUND_VERSION" == "$NODE_VERSION" ]] \
         && exit 0 \
-        || (echo "Node version does not match"; exit 1)
+        || (echo "Node version does not match.  Expected $NODE_VERSION, found $FOUND_VERSION"; exit 1)
     - run: npm ci
     - run: npx eslint src --max-warnings=0
     - run: npm run build:dev
