@@ -26,7 +26,7 @@ jobs:
         || (echo "Node version does not match.  Expected $NODE_VERSION, found $FOUND_VERSION"; exit 1)
 
     - name: Ensure our node version matches the main repo's version for push events
-      if: github.event_name == 'push' && (startsWith("r/", github.ref_name) || "develop" == github.ref_name)
+      if: github.event_name == 'push' && (startsWith(github.ref_name, 'r/') || github.ref_name == 'develop')
       run: |
         curl -s https://raw.githubusercontent.com/opencast/opencast/refs/heads/${{ github.ref_name }}/pom.xml -o pom.xml
         export FOUND_VERSION="$(grep node.version pom.xml | grep -Eo 'v[0-9.]+' | cut -f 1 -d '.' | cut -c 2-)"
