@@ -49,7 +49,7 @@
     "react-select": "^5.10.2",
     "webm-duration-fix": "^1.0.4",
     "webpack": "^5.108.3",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^7.2.1"
   },
   "devDependencies": {
     "@opencast/eslint-config-ts-react": "^0.3.0",
