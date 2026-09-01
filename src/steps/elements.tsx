@@ -1,7 +1,7 @@
 import { Floating, FloatingContainer, FloatingTrigger, ProtoButton, match, useColorScheme } from "@opencast/appkit";
 import { useTranslation } from "react-i18next";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { css } from "@emotion/react";
+import { CSSObject } from "@emotion/react";
 import { JSX, useState } from "react";
 
 import { COLORS, focusStyle } from "../util";
@@ -54,8 +54,8 @@ const StepButton: React.FC<StepButtonProps> = ({
         backgroundColor: danger ? COLORS.danger0 : COLORS.neutral05,
         padding: "12px 24px",
         ...match(kind, {
-          "next": () => css({ paddingRight: 16 }),
-          "prev": () => css({ paddingLeft: 16 }),
+          "next": (): CSSObject => ({ paddingRight: 16 }),
+          "prev": (): CSSObject => ({ paddingLeft: 16 }),
         }),
 
         '&[data-floating-state="open"] svg': {
