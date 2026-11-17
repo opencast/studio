@@ -51,7 +51,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/iarna__toml": "^2.0.5",
     "@types/mustache": "^4.2.6",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.6.5",
     "@types/react": "^19.2.17",
     "@types/react-beforeunload": "^2.1.5",
     "@types/react-dom": "^19.2.3",
